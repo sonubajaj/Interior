@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Flat Animated Dropdown Menu Demo</title>
+<link href="font-awesome.css" rel="stylesheet" type="text/css">
+<link href="animate.css" rel="stylesheet" type="text/css">
+<style class="cp-pen-styles">
+
+
+nav {
+  width:1000px;
+  margin: 30px auto;
+}
+
+nav ul.ul1 {
+  background: #923c17;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul.ul1 li.li1 {
+  position: relative;
+  display: inline-block;
+  margin-right: -4px;
+  text-align: center;
+}
+
+nav ul.ul1 li.li1: first-child a {
+  background: #e96125;
+  width: 49px;
+  padding: 15px 0;
+}
+
+nav ul.ul1 li.li1: last-child { margin: 0; }
+
+nav ul.ul1 li.li1 a {
+  display: block;
+  background: #e96125;
+  padding: 10px 20px;
+  color: #fff;
+  font-size: 16px;
+  text-decoration: none;
+  transition: 0.2s linear;
+}
+
+nav ul.ul1 li.li1 a:hover { background: #da784d; }
+
+nav ul.ul1 li.li1 ul.ul1 {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 200px;
+  border-bottom: 4px solid #923c17;
+}
+
+nav ul.ul1 li.li1 ul.ul1 li.li1 {
+  display: block;
+  width: 100%;
+  margin: 0;
+  text-align: left;
+}
+
+nav ul.ul1 li.li1 ul.ul1 li.li1 a {
+  display: block;
+  background: #e96125;
+  padding: 10px 15px;
+}
+
+nav ul.ul1 li.li1 ul.ul1 li.li1 a:first-child {
+  background: #2c3e50;
+  width: auto;
+  border-left: 4px solid transparent;
+  padding: 10px 15px;
+  font-size: 14px;
+}
+
+nav ul.ul1 li.li1 ul.ul1 li.li1 a:hover {
+  background: #e96125;
+  border-left: 4px solid #923c17;
+}
+</style>
+<link href="jquerysctipttop.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<form>
+<h1 style="margin-top:10px; color:#fff;" align="center"></h1>
+<nav class="animated flipInX">
+  <ul class="ul1">
+    
+    <li class="li1"> <a href="#"> Sort by </a> </li>
+	
+	 <li class="li1"> <div class="sub-menu"><a href="#"> Products <i class="fa fa-angle-down"></i> </a>
+      <ul class="ul1"style="display: none;">
+        <li class="li1"> <a href="#"> <input type="checkbox" name="vehicle" value="Bike">Product Item </a> </li>
+        <li class="li1"> <a href="#"><input type="checkbox" name="vehicle" value="Bike"> Product Item </a> </li>
+        <li class="li1"> <a href="#"> <input type="checkbox" name="vehicle" value="Bike">Product Item </a> </li>
+        
+      </ul></div>
+    </li>
+    <li class="li1"> <div class="sub-menu"> <a href="#"> Products <i class="fa fa-angle-down"></i> </a>
+      <ul class="ul1" style="display: none;">
+        <li class="li1"> <a href="#"> <input type="checkbox" name="vehicle" value="Bike">Product Item </a> </li>
+        <li class="li1"> <a href="#"> <input type="checkbox" name="vehicle" value="Bike">Product Item </a> </li>
+        <li class="li1"> <a href="#"><input type="checkbox" name="vehicle" value="Bike"> Product Item </a> </li>
+        <li class="li1"> <a href="#"><input type="checkbox" name="vehicle" value="Bike"> Product Item </a> </li>
+        <li class="li1"> <a href="#"><input type="checkbox" name="vehicle" value="Bike"> Product Item </a> </li>
+        
+      </ul></div>
+    </li>
+    <li class="li1"> <div class="sub-menu"><a href="#"> Services<i class="fa fa-angle-down"></i> </a>
+      <ul class="ul1" style="display: none;">
+        <li class="li1"> <a href="#"> <input type="checkbox" name="vehicle" value="Bike">Product Item </a> </li>
+        <li class="li1"> <a href="#"> <input type="checkbox" name="vehicle" value="Bike">Product Item </a> </li>
+        <li class="li1"> <a href="#"> <input type="checkbox" name="vehicle" value="Bike">Product Item </a> </li>
+      </ul></div>
+    </li>
+	<li class="li1"><div class="sub-menu"> <a href="#"> Price <i class="fa fa-angle-down"></i> </a>
+      <ul class="ul1"style="display: none;">
+        <li class="li1"> <a href="#"><input type="checkbox" name="vehicle" value="Bike"> Higher to Lower </a> </li>
+        <li class="li1"> <a href="#"><input type="checkbox" name="vehicle" value="Bike"> Lower to higher </a> </li>
+       
+      </ul></div>
+    </li>
+	<li class="li1"><div class="sub-menu"> <a href="#"> Experts <i class="fa fa-angle-down"></i> </a>
+      <ul class="ul1" style="display: none;">
+        <li class="li1"> <a href="#"> <input type="checkbox" name="vehicle" value="Bike">item </a> </li>
+        <li class="li1"> <a href="#"> <input type="checkbox" name="vehicle" value="Bike">Lower to higher </a> </li>
+       
+      </ul></div>
+    </li>
+	<li class="li1"><div class="sub-menu"> <a href="#"> Serives <i class="fa fa-angle-down"></i> </a>
+      <ul class="ul1" style="display: none;">
+        <li class="li1"> <a href="#"> <input type="checkbox" name="vehicle" value="Bike">item </a> </li>
+        <li class="li1"> <a href="#"> <input type="checkbox" name="vehicle" value="Bike">Lower to higher </a> </li>
+		<li class="li1"> <a href="#"><input type="checkbox" name="vehicle" value="Bike"> Lower to higher </a> </li>
+       
+      </ul></div>
+    </li>
+	<li class="li1"><div class="sub-menu"> <a href="#"> Products <i class="fa fa-angle-down"></i> </a>
+      <ul class="ul1" style="display: none;">
+        <li class="li1"> <a href="#"> <input type="checkbox" name="vehicle" value="Bike">item </a> </li>
+        <li class="li1"> <a href="#"> <input type="checkbox" name="vehicle" value="Bike">Lower to higher </a> </li>
+       <li class="li1"> <a href="#"> <input type="checkbox" name="vehicle" value="Bike">Lower to higher </a> </li>
+	   <li class="li1"> <a href="#"><input type="checkbox" name="vehicle" value="Bike"> Lower to higher </a> </li>
+      </ul></div>
+    </li>
+    <li class="li1"> <a href="#"> Contact Us </a> </li>
+  </ul>
+</nav>
+<script src="jquery.js"></script> 
+<script>
+$('.sub-menu ul').hide();
+$(".sub-menu a").click(function () {
+  $(this).parent(".sub-menu").children("ul").slideToggle("200");
+  $(this).find("i.fa").toggleClass("fa-angle-up fa-angle-down");
+});
+</script>
+
+
+</body></html>

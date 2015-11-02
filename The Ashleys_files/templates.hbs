@@ -1,0 +1,454 @@
+﻿<!--#?container-->
+<div id="container" class="content-container">
+    <div class="row int-container">
+        <section class="list-base">
+            <div class="container">
+                <div class="row">
+                    <ol class="breadcrumb">
+                        <li><a href="">Home</a></li>
+                        {{#if Promo}}
+                        <li><a href="">Promo</a></li>
+                        {{else}}
+                        <li><a href="">Store</a></li>
+                        {{#if CollectionId}}
+                        <li><a href="/brand:{{CollectionId}}">{{CollectionId}}</a></li>
+                        {{else}}
+                        <li><a href="/{{Cat_header}}">{{Cat_header}}</a></li>
+                        <li class="active"><a href="">{{MapCat}}</a></li>
+                        {{/if}}
+                        {{/if}}
+                    </ol>
+                </div>
+                <div id="filters-and-results">
+                    <div id="dvnodata" style="display:none" class="col-md-3 col-sm-4 tag-lt-base hidden-xs">
+                        No Data Found For Filters
+                    </div>
+                    {{{filters}}}
+                    <div id="results-and-pagination" class="col-md-9 col-sm-8 col-xs-12 tag-rt-base">
+                        <div id="header-sort-and-selected-filters" class="row main-base">
+                            <div class="row phomelink hidden">
+                                <div class="col-sm-4 col-xs-12">
+                                    <a id="ancHomelnk" title="HOME" href="/">Home</a>
+                                    <a id="ancHomelnkhead" title="" class="tt"> / {{Cat_header}}</a>
+                                </div>
+                            </div>
+                            <div class="row phomelink1">
+                                <h4 id="hdHead">{{{results_header}}}<span></span></h4>
+                                <div class="row">
+                                    <div class="col-sm-4 fdesign1">
+                                        <p id="spnfoundmsg">( {{TotalRecords}} )</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mfilter-base visible-xs">
+                                <div class="row flt-bt">
+                                    <div class="col-xs-6"><a id="ShowFilter"><i class="fa fa-filter"></i>FILTER</a></div>
+                                    <div class="col-xs-6 pull-right"><a href="#"><i class="fa fa-sort"></i>SORT BY</a></div>
+                                </div>
+                            </div>
+                            {{{sort}}}
+                        </div>
+                        <div style="color:gray; margin-bottom:15px;">{{{selected_filters}}}</div>
+                        {{{results}}}
+
+                        <div class="clearfix"></div>
+                        <div id="load_more">
+                            <a href="" title="Click to load more..." style="cursor:default">Click to load more...</a>
+                        </div>
+                        <div id="loading_to_append" title="Loading more..." style="cursor:default">Loading more...</div>
+                        <div id="end_of_search" title="No more to load" style="cursor:default">No more to load</div>
+                        {{{pagination_html}}}
+                    </div>
+                </div>
+            </div>
+            <!--#?end-->
+            <!--#?results-->
+            <div>
+                <div class="results_page">
+                </div>
+                <h6 style="display:none">Page {{page_number}} of {{total_pages}}</h6>
+                <div class="products" id="dvPMain">
+                    <div class="row exp-base">
+                        <div class="row exp-pd-base">
+                            <ul class="newsListClass" data-page="listing" id="results">
+                                {{{results_page}}}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--#?end-->
+            <!--#?no_results-->
+            <div id="results" class="no_results">
+                {{#if multiple_alternatives}}
+
+                {{{alternatives}}}
+                {{else}}
+                <div class="products">
+                    {{{products}}}
+                </div>
+                {{/if}}
+            </div>
+            <!--#?end-->
+            <!--#?results_header-->
+            <div id="results_header">
+                <h4>Search results for "{{query}}"</h4>
+                <div class="row">
+                    <div style="display:none" class="col-sm-4 fdesign1">
+                        <p id="number_of_results">FOUND {{number_of_results}} {{pluralise number_of_results 'DESIGN'}}</p>
+                    </div>
+                </div>
+            </div>
+            <!--#?end-->
+            <!--#?no_results_header-->
+            <div id="no_results_header">
+                {{{heading}}}
+            </div>
+            <!--#?end-->
+            <!--#?empty_query_heading-->
+            <h3>Please enter a search term</h3>
+            <!--#?end-->
+            <!--#?no_results_heading-->
+            <h4>No results for "{{query}}"</h4>
+            <!--#?end-->
+            <!--#?no_results_heading_with_alternative-->
+            <h4>No results for "{{query}}". Maybe you're interested in "{{alternative_query}}"?</h4>
+            <a href="{{alternative_query_search_link}}">View all ({{alternative_query_results_count}})</a>
+            <!--#?end-->
+            <!--#?no_results_heading_with_multiple_alternatives-->
+            <h4>No results for "{{query}}". Maybe you're interested in...</h4>
+            <!--#?end-->
+            <!--#?each_alternative-->
+            <div class="alternatives">
+                {{{alternative_header}}}
+                <div class="products">
+                    {{{alternative_products}}}
+                </div>
+            </div>
+            <!--#?end-->
+            <!--#?each_alternative_header-->
+            <div class="alternative_header">
+                <h4>{{alternative_query}}</h4>
+                <a href="{{alternative_query_search_link}}">View all ({{alternative_query_results_count}})</a>
+            </div>
+            <!--#?end-->
+            <!--#?selected_filters-->
+            <ul id="selected_filters" class="s-filter">
+                {{#each filters}}
+                {{#equal type 'checkbox'}}
+                {{#each items}}
+                {{#if selected}}
+                <li>
+                    <a href="" data-clear-filter-name="{{../../prefix}}" data-clear-filter-value="{{id}}">
+                        {{name}}<span class="clear-that">&nbsp;&nbsp;x</span>
+                    </a>
+                </li>
+                {{/if}}
+                {{/each}}
+                {{/equal}}
+                {{#equal type 'range'}}
+                {{#if selected_max}}
+                {{#equal ../../prefix 'p'}}
+                <li>
+                    <a href="" data-clear-filter-name="{{../../prefix}}">
+                        {{indian_currency_format selected_min}} - {{indian_currency_format selected_max}}<span class="clear-that">&nbsp;&nbsp;x</span>
+                    </a>
+                </li>
+                {{/equal}}
+                {{#equal ../../prefix 'd'}}
+                <li>
+                    <a href="" data-clear-filter-name="{{../../prefix}}">
+                        {{selected_min}}% - {{selected_max}}% {{../../name}}<span class="clear-that">&nbsp;&nbsp;x</span>
+                    </a>
+                </li>
+                {{/equal}}
+                {{/if}}
+                {{/equal}}
+                {{/each}}
+            </ul>
+            <!--#?end-->
+            <!--#?results_page-->
+            {{{products}}}
+            <!--#?end-->
+            <!--#?product_tile-->
+            <li class="exp-listing">
+                <div class="row exp-cont">
+                    {{#if IsSpace}}
+                    <span class="ht addToSpace" data-contentid="{{ContentId}}" data-contenttype="1" title="SAVED"><i class="fa fa-heart"></i></span>
+                    {{else}}
+                    <span class="ht addToSpace" data-contentid="{{ContentId}}" data-contenttype="1" title="SAVE TO MY SPACE"><i class="hrtgrey fa fa-heart"></i></span>
+                    {{/if}}
+                    <div class="row imgbase">
+                        <a class="qv-view-bt onHoverProduct quickView" data-contentid="{{ContentId}}" data-contenttype="1" title="QUICK VIEW">QUICK VIEW</a>
+                        <a class="product" href="{{link}}" target="_self">
+                            <img src="{{image}}" border="0" />
+                        </a>
+                    </div>
+                    <!--<div class="row exp-title">{{brand}}</div>
+                    <p class="ProdCat">{{CategoryName}}</p>
+                    <p>{{name}} </p>-->
+
+                    <a class="product" href="{{link}}" target="_self">
+
+                    <div class="row exp-title PrdNameSumm">{{name}}</div>
+                    <!--<p class="ProdCat">{{CategoryName}}</p>-->
+                    <p class="brandNameL">{{brand}}</p>
+
+                    {{#if StandardCode}}
+                    <div class="row ex-amt">
+                        <p class="newP">
+                            {{#equal price_max price_min}}
+                            <span class="WebRupee">Rs.</span>
+                            {{price}}
+                            {{else}}
+                            <span class="WebRupee">Rs.</span>
+                            {{price_min}} Onwards
+                            {{/equal}}
+                        </p>
+                        <p class="oldP">
+                            {{#if ActualMrp}}
+                            {{#equal SubClassName 'Furniture'}}
+                            {{else}}
+                            <span id="spnMrpPrice"></span>
+                            <span class="WebRupee">Rs.</span>
+                            {{ActualMrp}}
+                            {{/equal}}
+                            {{else}}
+                            {{/if}}
+                        </p>
+                    </div>
+                    {{/if}}
+                    </a>
+                    <div class="row">
+                        {{#equal SubClassName 'Furniture'}}
+                        {{else}}
+                        {{#if IsOnSale}}<span class="sale">sale</span>{{/if}}
+                        {{/equal}}
+                        {{#if IsTopSeller}}<label class="best">best seller</label>{{/if}}
+                        {{#if OutOfStock}}<label class="sold">sold out</label>{{/if}}
+                    </div>
+                    <!--<div class="row text-center">
+                        <div class="row oa">
+                            <span id="spnwas" class="oldprice">
+                                {{#if ActualMrp}}
+                                {{#equal SubClassName 'Furniture'}}
+                                {{else}}
+                                <span id="spnMrpPrice">Was </span>
+                                <span id="spnrsmrp" style="position: relative; top: 1PX; font-size: 15px;" class="WebRupee">Rs.&nbsp;</span>
+                                <span id="spnmrp">{{ActualMrp}}</span>
+                                {{/equal}}
+                                {{else}}
+                                {{/if}}
+                            </span>
+                        </div>
+                        <div class="row nr">
+                            {{#equal price_max price_min}}<span id="spnRetailPriceText">Now </span>
+                            <span style="position: relative; top: 1PX; font-size: 15px;" class="WebRupee">Rs.&nbsp;</span>
+                            <span id="spnretail">{{price}}</span>
+                            {{else}}<span id="spnRetailPriceText">Now </span>
+                            <span style="position: relative; top: 1PX; font-size: 15px;" class="WebRupee">Rs.&nbsp;</span>
+                            <span id="spnretail">{{price_min}} Onwards</span>
+                            {{/equal}}
+                        </div>
+                    </div>-->
+                    <!--<div class="row td-base1 ts-pd-base hidden ">
+                        <div class="prohover">
+                        </div>
+                        <div class="row f-rcent-img-base11">
+
+                        </div>
+
+                        <div class="br-quicklook">
+                            <img src="/Homehtml/images/quicklook.png" width="123" height="34" alt="QUICK VIEW"
+                                 title="QUICK VIEW" onclick="PLIST.Products.qklook('{{StandardCode}}');" />
+                        </div>
+                        <div class="pd-base1">
+                            <h2></h2>
+                            <h3></h3>
+                            <p></p>
+                        </div>
+                        <div class="row rsbase1">
+                            <span class="rate">
+                                {{#equal price_max price_min}}Now<span class="WebRupee tprswebspan">Rs.</span>{{price}}{{else}}Now<span class="WebRupee tprswebspan">Rs.</span>{{price_min}} Onwards{{/equal}}<br />
+                                {{#equal SubClassName 'Furniture'}}  {{else}}<span class="oldprice"> {{ActualMrp}}</span>{{/equal}}
+                            </span>
+                            <div class="sale-bt-base">
+                                {{#if IsOnSale}}<span class="sale-label">
+                                    <img title="SALE" alt="SALE" src="http://cd4.bedbathmore.com/MobileHomeHtml/images/sale.gif" />
+                                </span>{{/if}}
+                                &nbsp;{{#if IsTopSeller}}<span class="top-seller-label">
+                                    <img title="SALE" alt="SALE" src="http://cd4.bedbathmore.com/MobileHomeHtml/images/topseller.gif" />
+                                </span>{{/if}}
+
+                                &nbsp;{{#if OutOfStock}}<span>
+                                    <img title="soldout" alt="soldout" src="http://cd4.bedbathmore.com/MobileHomeHtml/images/soldout.gif" />
+                                </span>{{/if}}
+                                &nbsp;
+
+
+                                <!--{{#equal ItemCode ''}}
+                            <a href="{{link}}"><img style="cursor:pointer" title="View Details" alt="View Details" src="http://localhost:58493/s/css/images/cart.jpg" /></a>
+                            {{else}}
+                            <img style="cursor:pointer" title="AddCart" alt="AddCart" src="http://localhost:58493/s/css/images/cart.jpg" onclick="PRODUCT.Cart.ListAddToCart('{{StandardCode}}','{{ItemCode}}')" />
+                            {{/equal}} --
+                            </div>
+                        </div>
+                    </div>-->
+                </div>
+            </li>
+            <!--#?end-->
+            <!--#?filters-->
+            <div class="col-md-3 col-sm-4 tag-lt-base hidden-xs" id="resultsContainer" style="opacity: 1;">
+                <div id="filters">
+                    <div id="filtersContainer">
+                        <h5>Filter By</h5>
+                        {{#each filters}}
+                        {{#equal type 'checkbox'}}
+                        <div id="filter-{{prefix}}" class="filter checkboxes collapsible styled-scrollbars collapsed">
+                            <h6>
+                                <span class="toggle"></span>
+                                <span class="title">{{name}}</span>
+                            </h6>
+                            <div class="filter-filter-and-items fsize">
+                                <input type="text" class="filter-filter" placeholder="Search {{name}}"/>
+                                <div class="row tag-list">
+                                    <ul>
+                                        {{#each items}}
+                                        <li>
+                                            <label>
+
+                                                <input type="checkbox" style="margin-right: 6px;" name="{{../prefix}}" value="{{id}}" {{#if selected}} checked="checked" {{/if}}><span class="name">{{name}}</span>{{#if count}} <span class="count">({{count}})</span>{{/if}}
+
+                                            </label>
+                                        </li>
+                                        {{/each}}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        {{/equal}}
+                        {{#equal type 'range'}}
+                        <div id="filter-{{prefix}}" class="filter range collapsible collapsed">
+                            <h6>
+                                <span class="toggle"></span>
+                                <span class="title">{{name}}</span>
+                            </h6>
+                            <div class="filter-filter-and-items">
+                                <input type="hidden" name="{{prefix}}f" data-prefix="{{prefix}}" data-subdivision="min" data-original-min="{{#if_defined original_min}}{{original_min}}{{else}}{{min}}{{/if_defined}}" id="filter-{{prefix}}-f" value=""></input>
+                                <input type="hidden" name="{{prefix}}t" data-prefix="{{prefix}}" data-subdivision="max" data-original-max="{{#if_defined original_max}}{{original_max}}{{else}}{{max}}{{/if_defined}}" id="filter-{{prefix}}-t" value=""></input>
+                                <span id="filter-{{prefix}}-initial-min-label" class="initial-min">{{#equal name 'price'}}{{currency}}{{/equal}}{{#if_defined original_min}}{{original_min}}{{else}}{{min}}{{/if_defined}}{{#equal name 'discount'}}%{{/equal}}</span>
+                                <span id="filter-{{prefix}}-initial-max-label" class="initial-max">{{#equal name 'price'}}{{currency}}{{/equal}}{{#if_defined original_max}}{{original_max}}{{else}}{{max}}{{/if_defined}}{{#equal name 'discount'}}%{{/equal}}</span>
+                                <div class="slider" id="slider-{{prefix}}"></div>
+                                <div class="current-min-and-max">
+                                    <span id="filter-{{prefix}}-current-min-label" class="current-min"></span> to <span id="filter-{{prefix}}-current-max-label" class="current-max"></span>
+                                </div>
+                            </div>
+                        </div>
+                        {{/equal}}
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+            <!--#?end-->
+            <!--#?sort-->
+            <div class="sort1">
+                <div id="sort" class="dropdownable1 hidden-xs">
+                    <span>
+                        <span class="label">sort: {{sort_string sort}}</span>
+                    </span>
+                    <ul>
+                        {{#each sortOptions}}
+                        <li>
+                            <a href="" class="sort-link" data-sort="{{this}}">{{sort_string this}}</a>
+                        </li>
+                        {{/each}}
+                    </ul>
+                </div>
+            </div>
+            <!--#?end-->
+            <!--#?pagination-->
+            {{#pagination page per_page total}}
+            {{#if pagination}}
+            <ul id="pagination">
+                <li class="full">
+                    <span>Page {{currentPage}} of {{totalPages}}</span>
+                </li>
+                {{#unless startFromFirstPage}}
+                <li>
+                    <a href="" data-tagalys-to-page="1" class="page-link">1{{#unless startFromSecondPage}}...{{/unless}}</a>
+                </li>
+                {{/unless}}
+
+                {{#each pages}}
+                {{#if isCurrent}}
+                <li>
+                    <span class="current">{{page}}</span>
+                </li>
+                {{/if}}
+                {{#unless isCurrent}}
+                <li>
+                    <a href="" data-tagalys-to-page="{{page}}" class="page-link">{{page}}</a>
+                </li>
+                {{/unless}}
+                {{/each}}
+
+                {{#unless endAtLastPage}}
+                <li>
+                    <span>...</span>
+                </li>
+                {{/unless}}
+            </ul>
+            {{/if}}
+            {{/pagination}}
+            <!--#?end-->
+            <!--#?mobilefiltersTitle-->
+            <div class="row mflt-title" id="MobileFilterTitle"><b>FILTER</b> {{TotalRecords}}</div>
+            <!--#?end-->
+            <!--#?mobilefilters-->
+            <div class="row mflt-ct-base" id="mobileFilterContianer">
+                <div class="col-xs-4 mflt-lt-base">
+                    <ul id="MobileFilterList">
+                        {{#each filters}}
+                        {{#equal type 'checkbox'}}
+                        <li><a data-filtername="{{name}}" {{#if @index}} {{else}} class="active" {{/if}}> {{name}}</a></li>
+                        {{/equal}}
+                        {{/each}}
+                    </ul>
+                </div>
+                <div class="col-xs-7 mflt-rt-base">
+                    <div class="row search hidden">
+                        <div class="col-xs-1"><i class="fa fa-search" style="padding: 0px;"></i></div>
+                        <div class="col-xs-10">
+                            <input type="text" name="textfield" id="textfield" />
+                        </div>
+                        <div class="col-xs-1 text-right"><a href="#"><i class="fa fa-times" style="padding: 0px;"></i></a></div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="row mlist-base MobileFilterListDetails">
+                        {{#each filters}}
+                        {{#equal type 'checkbox'}}
+                        <ul data-filtername="{{name}}" {{#if @index}} {{else}} class="active" {{/if}}>
+                            {{#each items}}
+                            <li><a {{#if selected}} class="active" {{/if}}>{{name}} {{#if count}}({{count}}){{/if}}<span class="pull-right"><input type="checkbox" name="{{../prefix}}" value="{{id}}" {{#if selected}} checked="checked" {{/if}} /></span></a></li>
+                            {{/each}}
+                        </ul>
+                        {{/equal}}
+                        {{/each}}
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="row mflt-bt">
+                    <div class="col-xs-6">
+                        <a class="bt-3" id="MobileClearFilters">CLEAR FILTERS</a>
+                    </div>
+                    <div class="col-xs-6">
+                        <a class="bt-4" id="MobileApplyFilters">APPLY</a>
+                    </div>
+                </div>
+            </div>
+            <!--#?end-->
+        </section>
+    </div>
+</div>
+
+
